@@ -12,8 +12,6 @@
             width: 100%;
             height: 100%;
         }
-        
-        ;
     </style>
 </head>
 
@@ -45,39 +43,42 @@
         var geometry = new THREE.BoxGeometry(1, 1, 1);
         var cubeMaterials = [
             new THREE.MeshBasicMaterial({
-                map: new THREE.TextureLoader().load('https://my-little-cors-proxy.herokuapp.com/https://imgur.com/ZFxZfsA'),
+                color: 0xffffff,
                 side: THREE.DoubleSide
             }), // Right Side
-            new THREE.MeshBasicMaterial({
-                map: new THREE.TextureLoader().load('https://my-little-cors-proxy.herokuapp.com/https://imgur.com/OP0HAAW'),
+            new THREE.MeshPhongMaterial({
+                map: new THREE.TextureLoader().load('https://my-little-cors-proxy.herokuapp.com/https://i.imgur.com/6gJMJ0Y.jpg'),
                 side: THREE.DoubleSide
             }), // Left Side
-            new THREE.MeshBasicMaterial({
-                map: new THREE.TextureLoader().load('https://my-little-cors-proxy.herokuapp.com/https://imgur.com/BAgqAGM'),
+            new THREE.MeshLambertMaterial({
+                map: new THREE.TextureLoader().load('https://my-little-cors-proxy.herokuapp.com/https://i.imgur.com/pwU60Kk.jpg'),
                 side: THREE.DoubleSide
             }), // Top side
-            new THREE.MeshBasicMaterial({
-                map: new THREE.TextureLoader().load('https://my-little-cors-proxy.herokuapp.com/https://i.imgur.com/RcJdaLf.jpg'),
+            new THREE.MeshPhongMaterial({
+                map: new THREE.TextureLoader().load('https://my-little-cors-proxy.herokuapp.com/https://i.imgur.com/WTxDsYi.jpg'),
                 side: THREE.DoubleSide
             }), // Bottom Side
-            new THREE.MeshBasicMaterial({
-                map: new THREE.TextureLoader().load('https://my-little-cors-proxy.herokuapp.com/https://imgur.com/BNuOYm5'),
+            new THREE.MeshLambertMaterial({
+                map: new THREE.TextureLoader().load('https://my-little-cors-proxy.herokuapp.com/https://i.imgur.com/jFUv93k.jpg'),
                 side: THREE.DoubleSide
             }), // Front Side
             new THREE.MeshBasicMaterial({
-                map: new THREE.TextureLoader().load('https://my-little-cors-proxy.herokuapp.com/https://imgur.com/c7YGj3B'),
+                map: new THREE.TextureLoader().load('https://my-little-cors-proxy.herokuapp.com/https://i.imgur.com/stIWfq9.jpg'),
                 side: THREE.DoubleSide
             }) // Back Side
         ];
 
         // create a material, or color image texture
-        var material = new THREE.MeshBasicMaterial({
-            map: cubeMaterials
-        });
-        var cube = new THREE.Mesh(geometry, material);
+        var material = new THREE.MeshBasicMaterial(cubeMaterials);
+        var cube = new THREE.Mesh(geometry, cubeMaterials);
         scene.add(cube);
 
         camera.position.z = 3;
+
+        // create a material, colur, or image texture
+
+        var ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.7)
+        scene.add(ambientLight);
 
         // game logic 
         var update = function() {
